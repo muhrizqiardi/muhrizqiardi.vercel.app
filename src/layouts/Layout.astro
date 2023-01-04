@@ -1,0 +1,74 @@
+---
+import "@fontsource/inter";
+import BaseFooter from "../components/BaseFooter.astro";
+import BaseNav from "../components/BaseNav.astro";
+
+export interface Props {
+  frontmatter: {
+    title: string;
+    description: string;
+  };
+}
+
+const {
+  frontmatter: { title, description },
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style is:global>
+      @font-face {
+        font-family: "Computer Modern Serif Roman";
+        src: url("/fonts/cmunrm.woff") format("woff");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Computer Modern Serif Bold";
+        src: url("/fonts/cmunbx.woff") format("woff");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://muhrizqiardi.vercel.app/" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/og-image.png" />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="card" />
+    <meta property="twitter:url" content="https://muhrizqiardi.vercel.app/" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content="/og-image.png" />
+  </head>
+
+  <body
+    class="dark:bg-[#1a1a1a] selection:dark:bg-[#683600] selection:bg-[#ffc78c]"
+  >
+    <div
+      class="max-w-3xl mx-auto prose print:prose dark:prose-invert prose-headings:font-display prose-headings:font-normal prose-a:no-underline prose-a:text-primary hover:prose-a:opacity-60 prose-a:transition hover:prose-a:duration-150"
+    >
+      <BaseNav />
+
+      <main class="p-6">
+        <slot />
+      </main>
+
+      <BaseFooter />
+    </div>
+  </body>
+</html>

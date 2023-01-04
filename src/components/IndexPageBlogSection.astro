@@ -1,0 +1,35 @@
+---
+import IndexPageBlogSectionItem, {
+  Props,
+} from "./IndexPageBlogSectionItem.astro";
+
+const posts = await Astro.glob<Props>("../pages/posts/*.md");
+---
+
+<section>
+  <h2>Posts</h2>
+
+  <div class="flex flex-col">
+    {
+      posts.length === 0 ? (
+        <p class="font-display text-center">
+          Rizqi has not made a post... <i>yet.</i>
+        </p>
+      ) : null
+    }
+
+    {
+      posts
+        .slice(0, 4)
+        .sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime())
+        .filter((post) => post.url !== undefined)
+        .map((post) => (
+          <IndexPageBlogSectionItem {...post.frontmatter} href={post.url!} />
+        ))
+    }
+  </div>
+
+  <div class="my-8 text-center">
+    <a href="/posts">See more posts</a>
+  </div>
+</section>

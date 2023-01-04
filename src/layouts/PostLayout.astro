@@ -1,0 +1,84 @@
+---
+import "@fontsource/inter";
+import BaseFooter from "../components/BaseFooter.astro";
+import BaseNav from "../components/BaseNav.astro";
+
+export interface Props {
+  frontmatter: {
+    title: string;
+    excerpt: string;
+    author: string;
+    date: string;
+    coverImageSrc: string;
+  };
+}
+
+const {
+  frontmatter: { title, excerpt, author, date, coverImageSrc },
+} = Astro.props;
+const formattedDate = new Date(date).toLocaleString("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <style is:global>
+    @font-face {
+      font-family: "Computer Modern Serif Roman";
+      src: url("/fonts/cmunrm.woff") format("woff");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Computer Modern Serif Bold";
+      src: url("/fonts/cmunbx.woff") format("woff");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="generator" content={Astro.generator} />
+  <meta name="author" content="Muhammad Rizqi Ardiansyah" />
+  <title>{title}</title>
+
+  <body
+    class="dark:bg-[#1a1a1a] selection:dark:bg-[#683600] selection:bg-[#ffc78c]"
+  >
+    <div
+      class="max-w-3xl mx-auto prose dark:prose-invert prose-headings:font-display prose-headings:font-normal prose-a:no-underline prose-a:text-primary hover:prose-a:opacity-60 hover:prose-a:transition hover:prose-a:duration-150 prose-figure:text-center prose-figcaption:text-center prose-img:text-center prose-img:mx-auto prose-lead:font-display prose-lead:text-gray-300"
+    >
+      <BaseNav />
+
+      <main class="p-6">
+        <h1>{title}</h1>
+        <dl class="flex flex-col gap-0.5 text-sm">
+          <dt class="sr-only">By</dt>
+          <dd>{author}</dd>
+          <dt class="sr-only">at</dt>
+          <dd><time>{formattedDate}</time></dd>
+        </dl>
+        <div class="lead">{excerpt}</div>
+        {
+          coverImageSrc ? (
+            <img
+              src={coverImageSrc}
+              class="w-full aspect-[16/9] object-contain bg-black"
+            />
+          ) : null
+        }
+
+        <slot />
+      </main>
+
+      <BaseFooter />
+    </div>
+  </body>
+</html>

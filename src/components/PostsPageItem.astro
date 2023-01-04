@@ -1,0 +1,44 @@
+---
+export interface Props {
+  title: string;
+  date: string;
+  excerpt: string;
+  coverImageSrc?: string;
+  href: string;
+}
+
+const props = Astro.props;
+const formattedDate = new Date(props.date).toLocaleString("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
+---
+
+<article
+  class={`rounded grid ${
+    props.coverImageSrc ? "sm:[grid-template-columns:196px_1fr]" : ""
+  } gap-4 leading-tight`}
+>
+  {
+    props.coverImageSrc !== undefined ? (
+      <img
+        src={props.coverImageSrc}
+        class="my-0 mb-4 aspect-[16/9] w-full max-h-44 object-cover bg-black"
+      />
+    ) : (
+      <div />
+    )
+  }
+  <div>
+    <div class="flex justify-between items-start gap-3">
+      <h3 class="mt-0 mb-1 font-normal leading-tight">
+        <a href={props.href}>{props.title}</a>
+      </h3>
+      <p class="mt-1 mb-0 text-right text-sm flex-shrink-0">{formattedDate}</p>
+    </div>
+    <p class="text-sm opacity-90 my-0 line-clamp-3">
+      {props.excerpt}
+    </p>
+  </div>
+</article>

@@ -1,0 +1,39 @@
+---
+export interface Props {
+  title: string;
+  imageSrc?: string;
+  links: {
+    name: string;
+    href: string;
+  }[];
+}
+
+const props = Astro.props;
+---
+
+<article class="my-6 grid sm:grid-cols-8 gap-6 leading-snug">
+  <div class="sm:col-span-5">
+    <h2 class="mt-0 mb-1">{props.title}</h2>
+    <slot />
+  </div>
+  <div class="sm:col-span-3">
+    {
+      props.imageSrc !== undefined ? (
+        <img
+          src={props.imageSrc}
+          alt=""
+          class="aspect-[16/9] w-full object-contain my-0 bg-black"
+        />
+      ) : null
+    }
+    <ul class="list-none pl-0">
+      {
+        props.links.map((link) => (
+          <li>
+            <a href={link.href}>{link.name}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</article>

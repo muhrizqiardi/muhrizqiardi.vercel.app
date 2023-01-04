@@ -1,0 +1,82 @@
+---
+import ProjectsPageItem from "../../components/ProjectsPageItem.astro";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout frontmatter={{ title: "M. Rizqi Ardiansyah - Projects" }}>
+  <h1>Projects</h1>
+
+  <p>Here are few of the projects I've done in the past two years.</p>
+
+  <ProjectsPageItem
+    title="Journal App"
+    links={[
+      {
+        name: "Source code",
+        href: "https://github.com/muhrizqiardi/journal-app",
+      },
+      {
+        name: "Try it out",
+        href: "https://journal-app-lilac.vercel.app/",
+      },
+    ]}
+  >
+    A web application that allows users to keep a journal and track their mood.
+    It also has a feature that shows monthly or yearly statistics of the user’s
+    mood. It was built using TypeScript, Next.js 13 with Server Components,
+    Tailwind CSS, and built on top of Supabase’s PostgreSQL instance.
+  </ProjectsPageItem>
+
+  <ProjectsPageItem
+    title="LABCO"
+    links={[
+      {
+        name: "Source code",
+        href: "https://github.com/muhrizqiardi/labco",
+      },
+      {
+        name: "Try it out",
+        href: "https://labco.vercel.app/",
+      },
+    ]}
+  >
+    A lab management system made for final project in a Software Engineering
+    class with my teammates. The app was made using Next.js framework, both the
+    frontend and backend. Used Tailwind CSS for the styling, and MongoDB for the
+    non-relational database.
+  </ProjectsPageItem>
+
+  <ProjectsPageItem
+    title="SpaceWork"
+    links={[
+      {
+        name: "Source code",
+        href: "https://github.com/muhrizqiardi/final-project-pemr-web",
+      },
+      {
+        name: "Try it out",
+        href: "https://spacework.vercel.app/",
+      },
+    ]}
+  >
+    SpaceWork is a web application for listing remote jobs that was created for
+    a final project in a web programming class with my team. The front-end was
+    built using React and styled with Tailwind CSS, while the back-end was built
+    using Fastify. The database used in the project is PostgreSQL, which is
+    hosted on Supabase.
+  </ProjectsPageItem>
+
+  <ProjectsPageItem
+    title="Booktracker"
+    links={[
+      {
+        name: "Source code",
+        href: "https://github.com/riosiu/kelompok6-flutter",
+      },
+    ]}
+  >
+    A mobile app to track book progress, made for project in Mobile Programming
+    class with my team. The app was made using Flutter. It stores data using
+    SQLite, and fetches data from Google Books API.
+  </ProjectsPageItem>
+</Layout>

@@ -1,0 +1,47 @@
+---
+import PostsPageItem, { Props } from "../../components/PostsPageItem.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const posts = await Astro.glob<Props>("./*.md");
+const page = Astro.url.searchParams.get("page");
+---
+
+<Layout frontmatter={{ title: "M. Rizqi Ardiansyah - Posts" }}>
+  <header>
+    <h1>Posts</h1>
+  </header>
+
+  <section>
+    {
+      page !== null && Number.parseInt(page) > 1 ? (
+        <div class="mb-8 text-center">
+          <a href="/posts">See newer posts</a>
+        </div>
+      ) : null
+    }
+
+    {
+      posts.length === 0 ? (
+        <p class="font-display text-center">
+          Rizqi has not made a post... <i>yet.</i>
+        </p>
+      ) : null
+    }
+
+    <div class="flex flex-col">
+      {
+        posts
+          .slice(0, 4)
+          .sort(
+            (a, b) =>
+              new Date(b.frontmatter.date).getTime() -
+              new Date(a.frontmatter.date).getTime()
+          )
+          .filter((post) => post.url !== undefined)
+          .map((post) => (
+            <PostsPageItem {...post.frontmatter} href={post.url!} />
+          ))
+      }
+    </div>
+  </section>
+</Layout>

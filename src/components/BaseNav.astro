@@ -1,0 +1,50 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1); // remove the first "/"
+console.log(currentPath);
+---
+
+<nav
+  class="p-6 not-prose flex flex-col md:flex-row items-stretch gap-8 md:divide-x md:divide-zinc-300"
+>
+  <a href="/" class="hover:opacity-60 transition duration-150"
+    ><img
+      src="/favicon.svg"
+      alt="Rizqi's signature"
+      class="w-11 h-11 rounded-full"
+      style={{ height: 44, width: 44 }}
+      height="44"
+      width="44"
+    />
+  </a>
+  <ul class="md:pl-10 flex items-center gap-4 md:gap-8">
+    <li>
+      <a
+        href="/posts"
+        class={`hover:opacity-60 transition duration-150 ${
+          currentPath === "posts" ? "border-b-2 border-primary pb-0.5" : ""
+        }`}>Posts</a
+      >
+    </li>
+    <li>
+      <a
+        href="/resume"
+        class={`hover:opacity-60 transition duration-150 ${
+          currentPath === "resume" ? "border-b-2 border-primary pb-0.5" : ""
+        }`}>Résumé</a
+      >
+    </li>
+    <li>
+      <a
+        href="/projects"
+        class={`hover:opacity-60 transition duration-150 ${
+          currentPath === "projects" ? "border-b-2 border-primary pb-0.5" : ""
+        }`}>Projects</a
+      >
+    </li>
+    <li>
+      <a href="https://linktr.ee/muhrizqiardi" class="hover:opacity-60">Links</a
+      >
+    </li>
+  </ul>
+</nav>

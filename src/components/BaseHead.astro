@@ -1,0 +1,21 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  slug: string;
+}
+const { title, description, slug, publishDate } = Astro.props;
+---
+
+<meta
+  property="og:image"
+  content={slug !== undefined
+    ? `/assets/your-posts-folder/${slug}.png`
+    : `/assets/fallback-image.png`}
+/>
+<meta
+  property="twitter:image"
+  content={slug !== undefined
+    ? `/assets/your-posts-folder/${slug}.png`
+    : `/assets/fallback-image.png`}
+/>
