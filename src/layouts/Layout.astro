@@ -6,12 +6,12 @@ import BaseNav from "../components/BaseNav.astro";
 export interface Props {
   frontmatter: {
     title: string;
-    description: string;
+    description?: string;
   };
 }
 
 const {
-  frontmatter: { title, description },
+  frontmatter: { title, description = "" },
 } = Astro.props;
 ---
 
