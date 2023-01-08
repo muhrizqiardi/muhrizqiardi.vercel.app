@@ -11,29 +11,35 @@ export interface Props {
 const props = Astro.props;
 ---
 
-<article class="my-6 grid sm:grid-cols-8 gap-6 leading-snug">
-  <div class="sm:col-span-5">
-    <h2 class="mt-0 mb-1">{props.title}</h2>
-    <slot />
-  </div>
-  <div class="sm:col-span-3">
-    {
-      props.imageSrc !== undefined ? (
-        <img
-          src={props.imageSrc}
-          alt=""
-          class="aspect-[16/9] w-full object-contain my-0 bg-black"
-        />
-      ) : null
-    }
-    <ul class="list-none pl-0">
+<article
+  class="border rounded-md bg-black bg-opacity-5 dark:hover:bg-white transition dark:hover:bg-opacity-5 shadow dark:shadow-[rgb(255,255,255,0.3)] overflow-hidden"
+>
+  {
+    props.imageSrc !== undefined ? (
+      <img
+        src={props.imageSrc}
+        alt={props.title}
+        class="aspect-[16/9] w-full object-cover border-b bg-white"
+      />
+    ) : null
+  }
+  <div class="flex flex-col p-3 gap-1 text-sm">
+    <h2 class="text-xl font-display">{props.title}</h2>
+    <ul class="mt-2 mb-1 text-sm">
       {
         props.links.map((link) => (
           <li>
-            <a href={link.href}>{link.name}</a>
+            <a
+              href={link.href}
+              class="text-primary hover:opacity-80 transition"
+            >
+              {link.name}
+            </a>
           </li>
         ))
       }
     </ul>
+
+    <slot />
   </div>
 </article>
