@@ -1,5 +1,6 @@
 ---
 import "@fontsource/inter";
+import "../styles/cmuserif_roman_macroman/stylesheet.css"
 import BaseFooter from "../components/BaseFooter.astro";
 import BaseNav from "../components/BaseNav.astro";
 
@@ -18,22 +19,6 @@ const {
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <style is:global>
-      @font-face {
-        font-family: "Computer Modern Serif Roman";
-        src: url("/fonts/cmunrm.woff") format("woff");
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-      }
-      @font-face {
-        font-family: "Computer Modern Serif Bold";
-        src: url("/fonts/cmunbx.woff") format("woff");
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-      }
-    </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

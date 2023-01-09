@@ -5,7 +5,8 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: "Inter, Helvetica, sans-serif",
-        display: "Computer Modern Serif Roman, serif",
+        display: "cmu_serifroman, serif",
+        display_italic: ""
       },
       colors: {
         primary: "#f17d04",
